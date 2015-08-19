@@ -1,0 +1,6 @@
+openalpr
+node_modules
+build
+!lib/*
+!release/**
+!openalpr_runtime/**

@@ -1,10 +1,10 @@
 {
   "name": "node-openalpr",
   "description": "Node.js OpenALPR Bindings",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": {
     "name": "netPark",
-    "email": "support@netpark.us",
+    "email": "klawrence@netpark.us",
     "url": "https://www.netpark.us"
   },
   "contributors": [
@@ -15,16 +15,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/netpark/node-openalpr.git"
+    "url": "https://github.com/netPark/node-openalpr"
   },
   "dependencies": {
     "fs-extra": "^0.23.1",
     "nan": "^2.0.5",
     "node-pre-gyp": "https://github.com/mapbox/node-pre-gyp.git"
   },
-  "bundledDependencies": [
-    "node-pre-gyp"
-  ],
   "binary": {
     "module_name": "node_openalpr",
     "module_path": "release/{platform}_{arch}/",
@@ -39,5 +36,5 @@
     "postinstall": "node -e \"var fs = require('fs-extra'); fs.remove ('build');\""
   },
   "main": "./src/openalpr",
-  "gypfile": false
+  "license": "AGPL"
 }

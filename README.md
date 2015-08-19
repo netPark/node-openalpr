@@ -72,3 +72,9 @@ This is a breakdown of all of the methods available for node-openalpr. Start nee
 
 0. Run openalpr-install.sh
 0. Run npm install
+
+# Features, Bugs and Collaborating
+
+All of the code is provided as-is. We will not provide on-going support for any bugs that may be found. Please submit bug
+and features requests - we will review them but we do not garunteed that they will be addressed. Pull requests are welcome 
+and we'll review them as quickly as we can.

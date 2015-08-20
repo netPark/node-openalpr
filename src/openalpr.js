@@ -70,7 +70,7 @@ function OpenALPR () {
 			return;
 		}
 	
-		loop = setInterval (this.queueLoop, 1);
+		loop = setInterval (this.queueLoop, 32);
 	}
 	
 	/**

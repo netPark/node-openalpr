@@ -1,7 +1,7 @@
 node-openalpr
 ============
 
-This package binds OpenALPR with Node.js
+This package binds [OpenALPR](https://github.com/openalpr/openalpr) with Node.js
 
 # Installation and Example
 
@@ -10,7 +10,7 @@ that's not possible we'll fallback to precompiled binaries.
 
 ### Linux
 
-0. Install OpenALPR (https://github.com/openalpr/openalpr/wiki/Compilation-instructions-(Ubuntu-Linux))
+0. Install [OpenALPR](https://github.com/openalpr/openalpr/wiki/Compilation-instructions-(Ubuntu-Linux))
 0. Run ```npm install node-openalpr```
 
 ### Windows
@@ -43,7 +43,7 @@ for (var i = 0; i < 350; i++) {
 
 This is a breakdown of all of the methods available for node-openalpr. Start needs to be called before any other method.
 
-* `openalpr.Start ([config, [runtime, [count, [start_queue]]]])` - Initializes OpenALPR with default settings
+* `openalpr.Start ([config[, runtime[, count[, start_queue]]]])` - Initializes OpenALPR with default settings
   * config - Path to configuration file. On Windows defaults to the config file in node-openalpr directory, on Linux defaults to openalpr installation
   * runtime - Path to runtime data. On Windows defaults to "openalpr_runtime" folder in node-openalpr directory, on Linux defaults to openalpr installation
   * count - Number of concurrent OpenALPR processes to run - defaults to CPU core count
@@ -52,7 +52,7 @@ This is a breakdown of all of the methods available for node-openalpr. Start nee
 * `openalpr.StartQueue ()` - Starts the OpenALPR queue monitoring thread (normally started automatically after calling Start ())
 * `openalpr.StopQueue ()` - Stops the OpenALPR queue monitoring thread
 * `openalpr.queueLoop ()` - Method used in checking queue - can be called manually if start_queue is false for finer control
-* `openalpr.IdentifyLicense (path, options/callback[, callback])` - Begins the process of identifying a license from the given image
+* `openalpr.IdentifyLicense (path, options/callback[, callback])` - Begins the process of identifying a license from the given image, returns "working" or "queued" status result
   * path - Path to image - if image does not exist an exception will be thrown
   * callback/options - Additional options for the image or a callback
     * options.state         (string) - State ("oh") license plates are in for additional validation

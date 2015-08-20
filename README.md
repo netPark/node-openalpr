@@ -8,7 +8,13 @@ This package binds OpenALPR with Node.js
 Use npm to get the node-openalpr package. We'll attempt to use node-pre-gyp to compile from source, but if
 that's not possible we'll fallback to precompiled binaries.
 
-```npm install node-openalpr```
+### Linux
+
+0. Install OpenALPR (https://github.com/openalpr/openalpr/wiki/Compilation-instructions-(Ubuntu-Linux))
+0. Run ```npm install node-openalpr```
+
+### Windows
+0. Run ```npm install node-openalpr```
 
 ### Example
 

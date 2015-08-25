@@ -124,9 +124,21 @@ function OpenALPR () {
 			options = {};
 		}
 		
-		return nativeLPR.IdentifyLicense (path, function (error, output) {
+		var regions = [];
+		if (options.regions && options.regions.length) {
+			for (var r in options.regions) {
+				var region = options.regions[r];
+				if (!region.x || !region.y || !region.width || !region.height) {
+					continue;
+				}
+				
+				regions.push ([region.x, region.y, region.width, region.height]);
+			}
+		}
+		
+		return nativeLPR.IdentifyLicense (path, options.state || "", options.prewarp || "", options.detectRegion || false, regions, function (error, output) {
 			callback (error, JSON.parse (output));
-		}, options.state || "", options.prewarp || "", options.detectRegion || false);
+		});
 	}
 	
 	/**

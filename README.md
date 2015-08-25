@@ -3,6 +3,17 @@ node-openalpr
 
 This package binds [OpenALPR](https://github.com/openalpr/openalpr) with Node.js
 
+Version: 1.0.7 - Released August 25th, 2015
+
+```
+Changelog:
+
+1.0.7	- Added the capability to specify regions
+1.0.6	- Slowed down the event loop to 30 times per second
+1.0.1:5	- Documentation changes
+1.0.0	- Initial release
+```
+
 # Installation and Example
 
 Use npm to get the node-openalpr package. We'll attempt to use node-pre-gyp to compile from source, but if
@@ -55,9 +66,10 @@ This is a breakdown of all of the methods available for node-openalpr. Start nee
 * `openalpr.IdentifyLicense (path, options/callback[, callback])` - Begins the process of identifying a license from the given image, returns "working" or "queued" status result
   * path - Path to image - if image does not exist an exception will be thrown
   * callback/options - Additional options for the image or a callback
-    * options.state         (string) - State ("oh") license plates are in for additional validation
-    * options.prewarp       (string) - Prewarp configuration information
+    * options.state         (string)  - State ("oh") license plates are in for additional validation
+    * options.prewarp       (string)  - Prewarp configuration information
     * options.detectRegion  (boolean) - Use detect region functionality of OpenALPR? (slower)
+    * options.regions       (array)   - Specify the regions of the image to work on (format: [{ x: 0, y: 0, width: 0, height: 0 }, ...]
   * callback - Callback with results: function (errors, output)
 * `openalpr.GetVersion ()` - Get the version of OpenALPR currently being run against
 

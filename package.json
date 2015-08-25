@@ -1,7 +1,7 @@
 {
   "name": "node-openalpr",
   "description": "Node.js OpenALPR Bindings",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "AGPL",
   "keywords": [
 	"bindings",
@@ -22,7 +22,6 @@
       "email": "klawrence@netpark.us"
     }
   ],
-
   "repository": {
     "type": "git",
     "url": "git://github.com/netPark/node-openalpr.git"

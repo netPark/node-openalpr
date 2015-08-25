@@ -6,7 +6,9 @@
 #include <alpr.h>
 #include <config.h>
 #include <string.h>
+#include <fstream>
 #include <list>
+#include <vector>
 
 #ifdef _WIN32
 #pragma comment(lib, "Ws2_32.lib")
@@ -19,11 +21,12 @@ bool running = false;
 
 class LPRQueueItem 
 {
-	public:
+	public:	
 		char *path;
 		char *state;
 		std::string prewarp;
 		bool detectRegion = false;
+		std::vector <alpr::AlprRegionOfInterest> regions;
 		Nan::Callback *callback;
 };
 
@@ -48,7 +51,18 @@ class LPR {
 			this->openalpr->setDetectRegion (queueItem->detectRegion);
 			this->config->prewarp = queueItem->prewarp;
 			
-			return this->openalpr->recognize (queueItem->path);
+			std::ifstream ifs (queueItem->path, std::ios::binary|std::ios::ate);
+			std::ifstream::pos_type pos = ifs.tellg ();
+			std::vector<char>  buffer(pos);
+			ifs.seekg(0, std::ios::beg);
+			ifs.read(&buffer[0], pos);
+			
+			if (queueItem->regions.size ()) {
+				return this->openalpr->recognize (buffer, queueItem->regions);
+			}
+			else {
+				return this->openalpr->recognize (buffer);
+			}
 		}
 		
 		bool isWorking () {
@@ -169,16 +183,28 @@ NAN_METHOD (IdentifyLicense)
 
 	// Settings	
 	char *path = get (info[0]);
-	char *state = get (info[2]);
-	char *prewarp = get (info[3]);
-	bool detectRegion = info[4]->BooleanValue ();
-	Nan::Callback *callback = new Nan::Callback (info[1].As<Function>());
+	char *state = get (info[1]);
+	char *prewarp = get (info[2]);
+	bool detectRegion = info[3]->BooleanValue ();
+	Local<Array> regionsArray = info[4].As<Array> ();
+	Nan::Callback *callback = new Nan::Callback (info[5].As<Function>());
+	
+	std::vector<alpr::AlprRegionOfInterest> regions;
+	for (int i = 0; i < regionsArray->Length (); i++) {
+		Local<Array> regionValues = Local<Array>::Cast (regionsArray->Get (i));
+		int x = regionValues->Get (0)->Uint32Value ();
+		int y = regionValues->Get (1)->Uint32Value ();
+		int width = regionValues->Get (2)->Uint32Value ();
+		int height = regionValues->Get (3)->Uint32Value ();
+		regions.push_back (alpr::AlprRegionOfInterest (x, y, width, height));
+	}
 		
 	LPRQueueItem *item = new LPRQueueItem ();
 	item->path = path;
 	item->state = state;
 	item->prewarp = prewarp;
 	item->detectRegion = detectRegion;
+	item->regions = regions;
 	item->callback = callback;
 	
 	for (auto &i : instances) {

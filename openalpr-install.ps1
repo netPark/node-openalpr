@@ -1,5 +1,4 @@
-﻿cd C:\Users\Kevin\Documents\Work\Node-OpenALPR
-git clone https://github.com/openalpr/openalpr.git
+﻿git clone https://github.com/openalpr/openalpr.git
 cd openalpr
 git clone https://github.com/peters/openalpr-windows.git windows
 cd windows

@@ -28,6 +28,13 @@ that's not possible we'll fallback to precompiled binaries.
 ### Windows
 0. Run ```npm install node-openalpr```
 
+### OS X
+0. Install OpenALPR
+	- [OpenALPR](https://github.com/openalpr/openalpr/wiki/Compilation-instructions-(OS-X))
+	- using Homebrew(openalpr v2.2.0)
+0. Run ```npm install node-openalpr```
+
+
 ### Example
 
 ```javascript

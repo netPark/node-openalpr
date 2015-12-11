@@ -24,7 +24,10 @@
 					}
 				}
 			}],
-			['OS!="win"', {
+			['OS=="darwin"', {
+            	'libraries': [ "/usr/local/lib/libopenalpr-static.a" ]
+            }],
+			['OS=="linux"', {
 				'libraries': [ "/usr/lib/libopenalpr.so" ]
 			}]
       ]

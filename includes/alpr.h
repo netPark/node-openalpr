@@ -25,6 +25,12 @@
 #include <fstream> 
 #include <stdint.h>
 
+#ifdef WIN32
+  #define OPENALPR_DLL_EXPORT __declspec( dllexport )
+#else
+  #define OPENALPR_DLL_EXPORT 
+#endif
+
 namespace alpr
 {
   
@@ -78,6 +84,9 @@ namespace alpr
       // The number requested is always >= the topNPlates count
       int requested_topn;
 
+      // The country (training data code) that was used to recognize the plate
+      std::string country;
+      
       // the best plate is the topNPlate with the highest confidence
       AlprPlate bestPlate;
       
@@ -101,10 +110,13 @@ namespace alpr
   class AlprResults
   {
     public:
-      AlprResults() {};
+      AlprResults() {
+        frame_number = -1;
+      };
       virtual ~AlprResults() {};
 
       int64_t epoch_time;
+      int64_t frame_number;
       int img_width;
       int img_height;
       float total_processing_time_ms;
@@ -118,7 +130,7 @@ namespace alpr
 
   class Config;
   class AlprImpl;
-  class Alpr
+  class OPENALPR_DLL_EXPORT Alpr
   {
 
     public:

@@ -42,7 +42,8 @@ var openalpr = require ("node-openalpr");
 
 function identify (id, path) {
 	console.log (openalpr.IdentifyLicense (path, function (error, output) {
-		console.log (id +" "+ output.processing_time_ms);
+		var results = output.results;
+        console.log (id +" "+ output.processing_time_ms +" "+ ((results.length > 0) ? results[0].plate : "No results"));
 	
 		if (id == 349) {
 			console.log (openalpr.Stop ());
@@ -85,6 +86,7 @@ This is a breakdown of all of the methods available for node-openalpr. Start nee
 
 0. [Download and install io.js v3.0.0+](https://iojs.org/en/index.html)
 0. [Download and install git](https://git-scm.com/downloads)
+0. [Download and install cmake](https://cmake.org/download/)
 
 #### Windows
 

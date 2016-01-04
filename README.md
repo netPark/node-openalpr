@@ -3,11 +3,12 @@ node-openalpr
 
 This package binds [OpenALPR](https://github.com/openalpr/openalpr) with Node.js
 
-Version: 1.0.9 - Released September 4th, 2015
+Version: 1.1.0 - Released January 4th, 2016
 
 ```
 Changelog:
 
+1.1.0   - Updated OpenALPR to version 2.2, should fix Linux and OSX builds
 1.0.9	- Updated OpenALPR build and US region data
 1.0.7	- Added the capability to specify regions
 1.0.6	- Slowed down the event loop to 30 times per second

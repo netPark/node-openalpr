@@ -26,6 +26,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 #include <stdlib.h>     /* getenv */
 #include <math.h>
 
@@ -40,6 +41,8 @@ namespace alpr
       virtual ~Config();
 
       bool loaded;
+      
+      std::string config_file_path;
 
       std::string country;
 
@@ -54,6 +57,9 @@ namespace alpr
       
       bool skipDetection;
 
+      bool auto_invert;
+      bool always_invert;
+
       std::string prewarp;
       
       int maxPlateAngleDegrees;
@@ -66,10 +72,15 @@ namespace alpr
       float plateWidthMM;
       float plateHeightMM;
 
-      float charHeightMM;
-      float charWidthMM;
+      std::vector<float> charHeightMM;
+      std::vector<float> charWidthMM;
+      
+      float avgCharHeightMM;
+      float avgCharWidthMM;
+      
       float charWhitespaceTopMM;
       float charWhitespaceBotMM;
+      float charWhitespaceBetweenLinesMM;
 
       int templateWidthPx;
       int templateHeightPx;
@@ -88,13 +99,18 @@ namespace alpr
       float plateLinesSensitivityVertical;
       float plateLinesSensitivityHorizontal;
 
+      float segmentationMinSpeckleHeightPercent;
       int segmentationMinBoxWidthPx;
       float segmentationMinCharHeightPercent;
       float segmentationMaxCharWidthvsAverage;
 
+      std::string detectorFile;
+      
       std::string ocrLanguage;
       int ocrMinFontSize;
 
+      bool mustMatchPattern;
+      
       float postProcessMinConfidence;
       float postProcessConfidenceSkipLevel;
       unsigned int postProcessMinCharacters;
@@ -127,11 +143,16 @@ namespace alpr
 
       std::string runtimeBaseDir;
 
+      std::vector<std::string> loaded_countries;
+
+      bool setCountry(std::string country);
+
     private:
     
       float ocrImagePercent;
       float stateIdImagePercent;
 
+      std::vector<std::string> parse_country_string(std::string countries);
 
       void loadCommonValues(std::string configFile);
       void loadCountryValues(std::string configFile, std::string country);
@@ -143,7 +164,8 @@ namespace alpr
   {
     DETECTOR_LBP_CPU=0,
     DETECTOR_LBP_GPU=1,
-    DETECTOR_MORPH_CPU=2
+    DETECTOR_MORPH_CPU=2,
+    DETECTOR_LBP_OPENCL=3
   };
 
 }

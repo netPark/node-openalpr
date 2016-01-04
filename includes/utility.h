@@ -55,6 +55,7 @@ namespace alpr
       bool isPointBelowLine(cv::Point tp);
 
       float getPointAt(float x);
+      float getXPointAt(float y);
 
       cv::Point closestPointOnSegmentTo(cv::Point p);
 
@@ -109,6 +110,9 @@ namespace alpr
   std::string toString(float value);
   std::string toString(double value);
 
+  std::string &ltrim(std::string &s);
+  std::string &rtrim(std::string &s);
+  std::string &trim(std::string &s);
 }
 
 #endif // OPENALPR_UTILITY_H

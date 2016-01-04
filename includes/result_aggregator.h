@@ -17,44 +17,46 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OPENALPR_COLORFILTER_H
-#define OPENALPR_COLORFILTER_H
+#ifndef OPENALPR_RESULTAGGREGATOR_H
+#define OPENALPR_RESULTAGGREGATOR_H
 
-#include <iomanip>
-#include "opencv2/imgproc/imgproc.hpp"
 
-#include "constants.h"
-#include "utility.h"
-#include "config.h"
+#include "alpr_impl.h"
+
+
+// Runs the analysis for multiple training sets, and aggregates the results into the best matches
+
+struct PlateShapeInfo
+{
+  cv::Point2f center;
+  float area;
+  int max_width;
+  int max_height;
+};
 
 namespace alpr
 {
 
-  class ColorFilter
+  class ResultAggregator
   {
+  public:
+    ResultAggregator();
 
-    public:
-      ColorFilter(cv::Mat image, cv::Mat characterMask, Config* config);
-      virtual ~ColorFilter();
+    virtual ~ResultAggregator();
 
-      cv::Mat colorMask;
+    void addResults(AlprFullDetails full_results);
 
-    private:
+    AlprFullDetails getAggregateResults();
 
-      Config* config;
-      bool debug;
+  private:
+    std::vector<AlprFullDetails> all_results;
 
-      cv::Mat hsv;
-      cv::Mat charMask;
+    PlateShapeInfo getShapeInfo(AlprPlateResult plate);
 
-      bool grayscale;
-
-      void preprocessImage();
-      void findCharColors();
-
-      bool imageIsGrayscale(cv::Mat image);
-      int getMajorityOpinion(std::vector<float> values, float minPercentAgreement, float maxValDifference);
+    std::vector<std::vector<AlprPlateResult> > findClusters();
+    int overlaps(AlprPlateResult plate, std::vector<std::vector<AlprPlateResult> > clusters);
   };
-  
+
 }
-#endif // OPENALPR_COLORFILTER_H
+
+#endif //OPENALPR_RESULTAGGREGATOR_H

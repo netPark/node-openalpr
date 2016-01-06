@@ -1,7 +1,7 @@
 {
   "name": "node-openalpr",
   "description": "Node.js OpenALPR Bindings",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "AGPL",
   "keywords": [
 	"bindings",

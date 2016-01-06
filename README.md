@@ -8,6 +8,7 @@ Version: 1.1.0 - Released January 4th, 2016
 ```
 Changelog:
 
+1.1.1	- Fix for building on OSX
 1.1.0   - Updated OpenALPR to version 2.2, should fix Linux and OSX builds
 1.0.9	- Updated OpenALPR build and US region data
 1.0.7	- Added the capability to specify regions

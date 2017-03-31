@@ -32,8 +32,8 @@ class LPRQueueItem
 
 class LPR {
 	public:
-		LPR (std::string configFile = "", std::string runtimePath = "") {
-			this->openalpr = new alpr::Alpr ("us", configFile, runtimePath);
+		LPR (std::string configFile = "", std::string runtimePath = "", std::string plateRegion = "us") {
+			this->openalpr = new alpr::Alpr (plateRegion, configFile, runtimePath);
 			this->openalpr->setTopN (10);
 			this->config = this->openalpr->getConfig ();
 		}
@@ -139,10 +139,11 @@ NAN_METHOD (Start)
 	char *config_path = get (info[0]);
 	char *runtime_path = get (info[1]);
 	int instancesCount = info[2]->NumberValue ();
+	char *plate_region = get (info[3]);
 	
 	// Create a list of instances, if any fail to load return false
 	for (int i = 0; i < instancesCount; i++) {
-		LPR *lpr = new LPR (config_path, runtime_path);
+		LPR *lpr = new LPR (config_path, runtime_path, plate_region);
 		if (lpr->isLoaded () == false) {
 			info.GetReturnValue ().Set (false);
 		}

@@ -1,15 +1,15 @@
 {
   "name": "node-openalpr-region",
   "description": "Node.js OpenALPR Bindings",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "AGPL",
   "keywords": [
-	"bindings",
-	"license",
-	"plate",
-	"recognition",
-	"lpr",
-	"openalpr"
+    "bindings",
+    "license",
+    "plate",
+    "recognition",
+    "lpr",
+    "openalpr"
   ],
   "author": {
     "name": "netPark",

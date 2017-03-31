@@ -1,5 +1,5 @@
 {
-  "name": "node-openalpr",
+  "name": "node-openalpr-region",
   "description": "Node.js OpenALPR Bindings",
   "version": "1.1.1",
   "license": "AGPL",
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/netPark/node-openalpr.git"
+    "url": "git@github.com:mworkg/node-openalpr.git"
   },
   "dependencies": {
     "fs-extra": "^0.23.1",

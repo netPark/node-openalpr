@@ -3,11 +3,13 @@ node-openalpr
 
 This package binds [OpenALPR](https://github.com/openalpr/openalpr) with Node.js
 
-Version: 1.1.0 - Released January 4th, 2016
+Version: 1.1.3 - Released August 2nd, 2017
 
 ```
 Changelog:
 
+1.1.3   - Updates to be compatible with OpenALPR 2.3.0
+1.1.2   - Add country feature
 1.1.1	- Fix for building on OSX
 1.1.0   - Updated OpenALPR to version 2.2, should fix Linux and OSX builds
 1.0.9	- Updated OpenALPR build and US region data
@@ -53,7 +55,12 @@ function identify (id, path) {
 	}));
 }
 
-openalpr.Start ();
+// Basic starting
+openalpr.Start();
+
+// European detection starting
+// openalpr.Start(null, null, null, true, 'eu');
+
 openalpr.GetVersion ();
 
 for (var i = 0; i < 350; i++) {

@@ -35,7 +35,6 @@ class LPR {
 		LPR (std::string configFile = "", std::string runtimePath = "", std::string plateRegion = "us") {
 			this->openalpr = new alpr::Alpr (plateRegion, configFile, runtimePath);
 			this->openalpr->setTopN (10);
-			this->config = this->openalpr->getConfig ();
 		}
 		
 		~LPR () {
@@ -49,8 +48,7 @@ class LPR {
 		alpr::AlprResults recognize (LPRQueueItem *queueItem) {
 			this->openalpr->setDefaultRegion (queueItem->state);
 			this->openalpr->setDetectRegion (queueItem->detectRegion);
-			this->config->prewarp = queueItem->prewarp;
-			
+			this->openalpr->setPrewarp(queueItem->prewarp);
 			std::ifstream ifs (queueItem->path, std::ios::binary|std::ios::ate);
 			std::ifstream::pos_type pos = ifs.tellg ();
 			std::vector<char>  buffer(pos);

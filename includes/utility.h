@@ -103,6 +103,11 @@ namespace alpr
 
   cv::Mat addLabel(cv::Mat input, std::string label);
 
+  // Given 4 random points (Point2f array), order them as top-left, top-right, bottom-right, bottom-left
+  // Useful for orienting a rotatedrect
+  std::vector<cv::Point> sortPolygonPoints(cv::Point2f* polygon_points, cv::Size surrounding_image);
+  cv::Point findClosestPoint(cv::Point2f* polygon_points, int num_points, cv::Point position);
+  
   int levenshteinDistance (const std::string &s1, const std::string &s2, int max);
   std::string toString(int value);
   std::string toString(long value);
@@ -110,6 +115,8 @@ namespace alpr
   std::string toString(float value);
   std::string toString(double value);
 
+  std::string replaceAll(std::string str, const std::string& from, const std::string& to);
+  
   std::string &ltrim(std::string &s);
   std::string &rtrim(std::string &s);
   std::string &trim(std::string &s);

@@ -35,7 +35,7 @@
   "binary": {
     "module_name": "node_openalpr",
     "module_path": "release/{platform}_{arch}/",
-    "host": ""
+    "host": "https://github.com/netPark/node-openalpr"
   },
   "engines": {
     "node": ">= 4.0.0",

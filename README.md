@@ -31,10 +31,9 @@ that's not possible we'll fallback to precompiled binaries.
 0. Run ```npm install node-openalpr```
 
 ### OS X
-0. Install OpenALPR
+0. Install OpenALPR (this installation may lead to some error in the binary compilation, manual compilation may be requested. For the compilation issue see this suggestion: https://github.com/openalpr/openalpr/issues/658#issuecomment-482913493.)
 	- [OpenALPR](https://github.com/openalpr/openalpr/wiki/Compilation-instructions-(OS-X))
 	- using Homebrew(openalpr v2.2.0)
-This installation may lead to some error in the binary compilation, manual compilation may be requested. For the compilation issue see this suggestion: https://github.com/openalpr/openalpr/issues/658#issuecomment-482913493.
 0. Run ```npm install node-openalpr```
 
 

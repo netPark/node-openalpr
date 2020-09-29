@@ -43,7 +43,7 @@ that's not possible we'll fallback to precompiled binaries.
 var openalpr = require ("node-openalpr");
 
 function identify (id, path) {
-	console.log (openalpr.IdentifyLicense (path, function (error, output) {
+	console.log (openalpr.IdentifyLicense (path, function (error, output)) {
 		var results = output.results;
         console.log (id +" "+ output.processing_time_ms +" "+ ((results.length > 0) ? results[0].plate : "No results"));
 	

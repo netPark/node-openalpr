@@ -1,15 +1,15 @@
 {
   "name": "node-openalpr",
   "description": "Node.js OpenALPR Bindings",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "license": "AGPL",
   "keywords": [
-	"bindings",
-	"license",
-	"plate",
-	"recognition",
-	"lpr",
-	"openalpr"
+    "bindings",
+    "license",
+    "plate",
+    "recognition",
+    "lpr",
+    "openalpr"
   ],
   "author": {
     "name": "netPark",
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/netPark/node-openalpr.git"
+    "url": "git@github.com:Sneko/node-openalpr.git"
   },
   "dependencies": {
     "fs-extra": "^0.23.1",

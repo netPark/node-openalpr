@@ -28,7 +28,7 @@ function OpenALPR () {
 	 * @param int count Amount of OpenALPR threads to startup [Default: System CPU count]
 	 * @param bool start_queue Auto-start queuing [Default: true]
 	 */
-	this.Start = function (config, runtime, count, start_queue) {
+	this.Start = function (config, runtime, count, start_queue, region) {
 		if (initialized) {
 			return true;
 		}
@@ -43,7 +43,7 @@ function OpenALPR () {
 		
 		var cpu_count = os.cpus ().length;
 		
-		initialized = nativeLPR.Start (config || "", runtime || "", count || cpu_count, function (reason) {
+		initialized = nativeLPR.Start (config || "", runtime || "", count || cpu_count, region || "us", function (reason) {
 			console.log ("OpenALPR Stopped " + reason);
 		});
 		

@@ -24,7 +24,7 @@
 #include "config.h"
 #include "utility.h"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "detection/detector.h"
+#include "detection/detector_types.h"
 
 namespace alpr
 {
@@ -34,20 +34,29 @@ namespace alpr
     PreWarp(Config* config);
     virtual ~PreWarp();
 
+    void initialize(std::string prewarp_config);
+    void clear();
+    
     cv::Mat warpImage(cv::Mat image);
     std::vector<cv::Point2f> projectPoints(std::vector<cv::Point2f> points, bool inverse);
     std::vector<cv::Rect> projectRects(std::vector<cv::Rect> rects, int maxWidth, int maxHeight, bool inverse);
+    cv::Rect projectRect(cv::Rect rect, int maxWidth, int maxHeight, bool inverse);
     void projectPlateRegions(std::vector<PlateRegion>& plateRegions, int maxWidth, int maxHeight, bool inverse);
 
+    void setTransform(float w, float h, float rotationx, float rotationy, float rotationz, float panX, float panY, float stretchX, float dist);
+    
     bool valid;
+    
+    std::string toString();
     
   private:
     Config* config;
     cv::Mat transform;
     
+    cv::Mat getTransform(float w, float h, float rotationx, float rotationy, float rotationz, float panX, float panY, float stretchX, float dist);
+    
     float w, h, rotationx, rotationy, rotationz, stretchX, dist, panX, panY;
     
-    cv::Mat findTransform(float w, float h, float rotationx, float rotationy, float rotationz, float panX, float panY, float stretchX, float dist);
   };
 
 }

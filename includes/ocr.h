@@ -18,44 +18,37 @@
 */
 
 #ifndef OPENALPR_OCR_H
-#define OPENALPR_OCR_H
+#define	OPENALPR_OCR_H
 
-#include <iostream>
-#include <stdio.h>
-
-#include "utility.h"
 #include "postprocess/postprocess.h"
-#include "config.h"
 #include "pipeline_data.h"
-
-#include "constants.h"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "support/filesystem.h"
-#include "support/version.h"
-
-#include "tesseract/baseapi.h"
 
 namespace alpr
 {
-
-  class OCR
+  struct OcrChar
   {
+    std::string letter;
+    int char_index;
+    float confidence;
+  };
+  
+  class OCR {
+  public:
+    OCR(Config* config);
+    virtual ~OCR();
 
-    public:
-      OCR(Config* config);
-      virtual ~OCR();
+    void performOCR(PipelineData* pipeline_data);
 
-      void performOCR(PipelineData* pipeline_data);
+    PostProcess postProcessor;
 
-      PostProcess postProcessor;
-
-    private:
-      Config* config;
-
-      tesseract::TessBaseAPI tesseract;
+  protected:
+    virtual std::vector<OcrChar> recognize_line(int line_index, PipelineData* pipeline_data)=0;
+    virtual void segment(PipelineData* pipeline_data)=0;
+    
+    Config* config;
 
   };
-
 }
 
-#endif // OPENALPR_OCR_H
+#endif	/* OPENALPR_OCR_H */
+

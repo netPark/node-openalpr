@@ -1,15 +1,15 @@
 {
   "name": "node-openalpr",
   "description": "Node.js OpenALPR Bindings",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "license": "AGPL",
   "keywords": [
-	"bindings",
-	"license",
-	"plate",
-	"recognition",
-	"lpr",
-	"openalpr"
+    "bindings",
+    "license",
+    "plate",
+    "recognition",
+    "lpr",
+    "openalpr"
   ],
   "author": {
     "name": "netPark",
@@ -20,6 +20,10 @@
     {
       "name": "Kevin Lawrence",
       "email": "klawrence@netpark.us"
+    },
+    {
+      "name": "Viliam Simko",
+      "email": "viliam.simko@gmail.com"
     }
   ],
   "repository": {
@@ -27,9 +31,9 @@
     "url": "git://github.com/netPark/node-openalpr.git"
   },
   "dependencies": {
-    "fs-extra": "^0.23.1",
-    "nan": "^2.0.5",
-    "node-pre-gyp": "https://github.com/mapbox/node-pre-gyp.git"
+    "fs-extra": "^9.0.1",
+    "nan": "^2.14.2",
+    "node-pre-gyp": "^0.15.0"
   },
   "main": "./src/openalpr",
   "binary": {
@@ -38,7 +42,7 @@
     "host": "https://github.com/netPark/node-openalpr"
   },
   "engines": {
-    "node": ">= 4.0.0",
+    "node": ">= 12.0.0",
     "iojs": ">= 3.0.0"
   },
   "scripts": {

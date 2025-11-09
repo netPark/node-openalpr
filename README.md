@@ -40,25 +40,35 @@ that's not possible we'll fallback to precompiled binaries.
 ### Example
 
 ```javascript
-var openalpr = require ("node-openalpr");
+const openalpr = require ("node-openalpr")
+ 
+const findImage = (file) => 
+  file.endsWith( '.jpg' ) || file.endsWith( '.png' )
 
-function identify (id, path) {
-	console.log (openalpr.IdentifyLicense (path, function (error, output) {
-		var results = output.results;
-        console.log (id +" "+ output.processing_time_ms +" "+ ((results.length > 0) ? results[0].plate : "No results"));
-	
-		if (id == 349) {
-			console.log (openalpr.Stop ());
-		}
-	}));
-}
+const getFiles = (PATH) => 
+  fs.readdirSync(PATH).filter( findImage )
 
-openalpr.Start ();
-openalpr.GetVersion ();
+const showResults = ( id, output ) => 
+  console.log( id +" "+ output.processing_time_ms +" "+ 
+    ( (output.results.length > 0) 
+        ? output.results[0].plate 
+        : "No results" )
+  )
 
-for (var i = 0; i < 350; i++) {
-	identify (i, "lp.jpg");
-}
+const showStop = ( id, output ) => 
+  showResults( id, output ) || console.log (openalpr.Stop ())
+
+const identify = ( path, id, arr ) => 
+  openalpr.IdentifyLicense( path, ( error, output ) =>
+    (id === arr.length - 1) 
+      ? showStop( id, output )
+      : showResults( id, output )
+  )
+
+openalpr.Start()
+openalpr.GetVersion()
+
+getFiles('./').map( identify )
 ```
 
 ### Methods
